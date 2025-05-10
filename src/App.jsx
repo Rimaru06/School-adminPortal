@@ -7,6 +7,7 @@ import UploadDocument from './pages/UploadDocument';
 import PostNews from './pages/PostNews';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
+import Mandatory from './pages/Mandatory';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -64,6 +65,14 @@ const App = () => {
           element={
             <ProtectedRoute token={token}>
               <PostNews />
+            </ProtectedRoute>
+          }
+        />
+          <Route
+          path="/mandatory-document"
+          element={
+            <ProtectedRoute token={token}>
+              <Mandatory />
             </ProtectedRoute>
           }
         />

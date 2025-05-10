@@ -30,6 +30,7 @@ const Navbar = ({ setToken }) => {
     { name: "Upload Gallery", path: "/upload-gallery", icon: <ImageIcon className="h-4 w-4 mr-2" /> },
     { name: "Upload Document", path: "/upload-document", icon: <FileText className="h-4 w-4 mr-2" /> },
     { name: "Post News", path: "/post-news", icon: <News className="h-4 w-4 mr-2" /> },
+    { name: "Mandatory Documents", path: "/mandatory-document", icon: <FileText className="h-4 w-4 mr-2" /> },
   ];
 
   return (
