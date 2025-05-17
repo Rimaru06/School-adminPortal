@@ -5,37 +5,34 @@ const typeOptions = [
   { label: "General Document", value: "documents" },
   { label: "Mandatory Document", value: "mandatory" },
   { label: "News", value: "news" },
-{ label: "Gallery", value: "gallery" },
+  { label: "Gallery", value: "gallery" },
 ];
 
 const endpoints = {
   documents: "/api/documents",
   mandatory: "/api/mandatory",
   news: "/api/news",
-  gallery: "/api/gallery"
+  gallery: "/api/gallery",
 };
 
 const DeleteDocx = () => {
-  const [selectedType, setSelectedType] = useState("documents");
+  const [selectedType, setSelectedType] = useState(typeOptions[0].value); // default to first type
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-useEffect(() => {
-  if (!selectedType || !endpoints[selectedType]) {
-    setItems([]);
-    setMessage("Please select a valid type.");
-    return;
-  }
-  setLoading(true);
-  setMessage("");
-  axios
-    .get(`${import.meta.env.VITE_API_BASE_URL}${endpoints[selectedType]}`)
-    .then((res) => setItems(res.data))
-    .catch(() => setMessage("Failed to fetch items."))
-    .finally(() => setLoading(false));
-}, [selectedType]);
+  useEffect(() => {
+    // Always valid because dropdown only allows valid types
+    setLoading(true);
+    setMessage("");
+    axios
+      .get(`${import.meta.env.VITE_API_BASE_URL}${endpoints[selectedType]}`)
+      .then((res) => setItems(res.data))
+      .catch(() => setMessage("Failed to fetch items."))
+      .finally(() => setLoading(false));
+  }, [selectedType]);
+
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     setDeleteLoading(true);
