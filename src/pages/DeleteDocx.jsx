@@ -22,17 +22,20 @@ const DeleteDocx = () => {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    if (!selectedType) return;
-    setLoading(true);
-    setMessage("");
-    axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}${endpoints[selectedType]}`)
-      .then((res) => setItems(res.data))
-      .catch(() => setMessage("Failed to fetch items."))
-      .finally(() => setLoading(false));
-  }, [selectedType]);
-
+useEffect(() => {
+  if (!selectedType || !endpoints[selectedType]) {
+    setItems([]);
+    setMessage("Please select a valid type.");
+    return;
+  }
+  setLoading(true);
+  setMessage("");
+  axios
+    .get(`${import.meta.env.VITE_API_BASE_URL}${endpoints[selectedType]}`)
+    .then((res) => setItems(res.data))
+    .catch(() => setMessage("Failed to fetch items."))
+    .finally(() => setLoading(false));
+}, [selectedType]);
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     setDeleteLoading(true);
