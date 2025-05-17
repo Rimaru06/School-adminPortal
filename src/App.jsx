@@ -8,6 +8,7 @@ import PostNews from './pages/PostNews';
 import Navbar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
 import Mandatory from './pages/Mandatory';
+import DeleteDocx from './pages/DeleteDocx';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -73,6 +74,14 @@ const App = () => {
           element={
             <ProtectedRoute token={token}>
               <Mandatory />
+            </ProtectedRoute>
+          }
+        />
+          <Route
+          path="/delete-docx"
+          element={
+            <ProtectedRoute token={token}>
+              <DeleteDocx />
             </ProtectedRoute>
           }
         />
