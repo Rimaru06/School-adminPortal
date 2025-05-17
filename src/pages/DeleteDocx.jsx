@@ -5,6 +5,7 @@ const typeOptions = [
   { label: "General Document", value: "documents" },
   { label: "Mandatory Document", value: "mandatory" },
   { label: "News", value: "news" },
+{ label: "Gallery", value: "gallery" },
 ];
 
 const endpoints = {
